@@ -12,7 +12,10 @@ html, body {
   z-index: 0;
 }
 .app-content {
-  width: calc(100% - 280px);
   height: 100%;
-  margin: 56px 0 0 280px;
+  margin-top: 56px;
+}
+.app-content__admin {
+  width: calc(100% - 280px);
+  margin-left: 280px;
 }
