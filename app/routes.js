@@ -5,6 +5,11 @@ module.exports = function(app) {
   });
 
   // Admin routes
+  app.get('/admin/login', function(req, res) {
+    res.render('admin/login', {
+      page: 'login',
+    });
+  });
   app.get('/admin/dashboard', function(req, res) {
     res.render('admin/dashboard', {
       page: 'dashboard',

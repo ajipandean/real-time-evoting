@@ -1,0 +1,30 @@
+extends ../layouts/blank.pug
+
+block content
+  div(class="container py-5")
+    div(class="row justify-content-center")
+      div(class="col-12 col-xs-10 col-sm-8 col-md-6 col-lg-4")
+        div(class="card")
+          div(class="card-header")
+            h5(class="card-title mb-1") Login as administrator
+          div(class="card-body")
+            form
+              div(class="form-group")
+                label(for="username") Username
+                input(
+                  id="username"
+                  class="form-control"
+                  type="text"
+                  placeholder="Username"
+                  autofocus
+                )
+              div(class="form-group")
+                label(for="password") Password
+                input(
+                  id="password"
+                  class="form-control"
+                  type="password"
+                  placeholder="Password"
+                )
+              div(class="form-group mb-0")
+                button(class="btn btn-primary btn-block", type="submit") Login
