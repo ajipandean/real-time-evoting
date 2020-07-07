@@ -1,0 +1,20 @@
+{
+  "name": "real-time-evoting",
+  "version": "1.0.0",
+  "description": "A Real-time Web Application for E-Voting",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "author": "Muhamad Aji Pandean Mertayasa <ajikun9@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.22",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.0",
+    "socket.io": "^2.3.0"
+  }
+}

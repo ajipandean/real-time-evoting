@@ -1,0 +1,18 @@
+html, body {
+  width: 100%;
+  height: calc(100% - 56px);
+  background-color: #f5f5f5;
+}
+.app-sidebar {
+  min-width: 280px;
+  background-color: white;
+  top: 56px;
+  left: 0;
+  bottom: 0;
+  z-index: 0;
+}
+.app-content {
+  width: calc(100% - 280px);
+  height: 100%;
+  margin: 56px 0 0 280px;
+}

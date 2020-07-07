@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title Real-time E-Voting App
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/assets/css/partials.css")
+    block style-addons
+  body
+    include ../partials/navbar.pug
+    include ../partials/sidebar.pug
+    div(class="app-content")
+      block content
+
+    script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js")
+    script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js")
+    block script-addons

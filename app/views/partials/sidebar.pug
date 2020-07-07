@@ -1,0 +1,8 @@
+div(class="position-fixed border-right app-sidebar")
+  div(class="container py-4")
+    h5(class="mb-3") Navigation
+    ul(class="nav flex-column nav-pills")
+      li(class="nav-item")
+        a(class=`nav-link ${page === 'dashboard' ? 'active' : null}`, href="/admin/dashboard") Dashboard
+      li(class="nav-item")
+        a(class=`nav-link ${page === 'candidates' ? 'active' : null}`, href="/admin/candidates") Candidates
