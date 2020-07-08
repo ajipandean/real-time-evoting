@@ -5,6 +5,12 @@ module.exports = function(app, passport) {
   });
 
   // Admin routes
+  app.get('/admin/dashboard', function(req, res) {
+    res.render('admin/dashboard', {
+      page: 'dashboard',
+    });
+  });
+
   app.get('/admin/auth/login', function(req, res) {
     res.render('admin/login', {
       page: 'login',
@@ -23,4 +29,9 @@ module.exports = function(app, passport) {
       message: req.flash('message'),
     });
   });
+  app.post('/admin/auth/register', passport.authenticate('local-register', {
+    successRedirect: '/admin/auth/login',
+    failureRedirect: '/admin/auth/register',
+    failureFlash: true,
+  }));
 };

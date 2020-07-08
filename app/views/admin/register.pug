@@ -10,16 +10,7 @@ block content
           div(class="card-header border-0 bg-white")
             h5(class="card-title mb-0") Register Admin
           div(class="card-body")
-            form
-              div(class="form-group")
-                label(for="email") Email
-                input(
-                  autofocus
-                  id="email"
-                  name="email"
-                  type="email"
-                  class="form-control"
-                )
+            form(action="/admin/auth/register", method="POST")
               div(class="form-group")
                 label(for="username") Username
                 input(
@@ -32,7 +23,6 @@ block content
               div(class="form-group")
                 label(for="password") Password
                 input(
-                  autofocus
                   id="password"
                   name="password"
                   type="password"
