@@ -1,3 +1,6 @@
+// Helpers invocation
+const isLoggedin = require('./helpers/is-loggedin');
+
 module.exports = function(app, passport) {
   // Client routes
   app.get('/', function(req, res) {
@@ -5,7 +8,7 @@ module.exports = function(app, passport) {
   });
 
   // Admin routes
-  app.get('/admin/dashboard', function(req, res) {
+  app.get('/admin/dashboard', isLoggedin, function(req, res) {
     res.render('admin/dashboard', {
       page: 'dashboard',
     });
