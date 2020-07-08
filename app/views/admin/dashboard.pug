@@ -1,4 +1,19 @@
 extends ../layouts/admin.pug
 
+block style-addons
+  link(rel="stylesheet", href="/assets/css/dashboard.css")
+
 block content
-  h1 Dashboard
+  div(class="container py-4")
+    div(class="row")
+      div(class="col")
+        div(class="card border-0 shadow")
+          div(class="card-header border-0 bg-white")
+            h5(class="card-title mb-0") Candidates vote count
+            p(class="card-text text-muted mb-0") 3 candidates
+          div(class="card-body")
+            canvas(id="candidates-vote-count")
+
+block script-addons
+  script(src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0")
+  script(src="/assets/js/dashboard.js")
