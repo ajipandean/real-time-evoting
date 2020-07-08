@@ -1,23 +1,13 @@
 module.exports = function(app) {
   // Client routes
   app.get('/', function(req, res) {
-    res.render('index');
+    res.redirect('/admin/auth/login');
   });
 
   // Admin routes
-  app.get('/admin/login', function(req, res) {
+  app.get('/admin/auth/login', function(req, res) {
     res.render('admin/login', {
       page: 'login',
-    });
-  });
-  app.get('/admin/dashboard', function(req, res) {
-    res.render('admin/dashboard', {
-      page: 'dashboard',
-    });
-  });
-  app.get('/admin/candidates', function(req, res) {
-    res.render('admin/candidates', {
-      page: 'candidates',
     });
   });
 };
