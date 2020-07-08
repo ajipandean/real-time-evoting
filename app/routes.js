@@ -37,4 +37,9 @@ module.exports = function(app, passport) {
     failureRedirect: '/admin/auth/register',
     failureFlash: true,
   }));
+
+  app.get('/admin/auth/logout', function(req, res) {
+    req.logout();
+    res.redirect('/admin/auth/login');
+  });
 };
