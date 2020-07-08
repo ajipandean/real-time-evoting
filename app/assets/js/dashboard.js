@@ -1,9 +1,9 @@
 const data = {
-  labels: ['Mahada & Adelia', 'Arix & Dharmayasa'],
+  labels: ['Mahada', 'Arix', 'Adelia', 'Devi', 'Anik'],
   datasets: [
     {
       label: 'Candidate vote counts',
-      data: [44, 55],
+      data: [44, 55, 23, 1, 43],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -25,7 +25,7 @@ const data = {
   ],
 };
 
-const chart = new Chart($('#candidates-vote-count'), {
+const voteBarChart = new Chart($('#vote-bar-chart'), {
   type: 'bar',
   data: data,
   animation: {

@@ -13,6 +13,11 @@ module.exports = function(app, passport) {
       page: 'dashboard',
     });
   });
+  app.get('/admin/candidates', isLoggedin, function(req, res) {
+    res.render('admin/candidates', {
+      page: 'candidates',
+    });
+  });
 
   app.get('/admin/auth/login', function(req, res) {
     res.render('admin/login', {
