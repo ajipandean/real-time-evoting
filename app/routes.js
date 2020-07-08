@@ -16,4 +16,11 @@ module.exports = function(app, passport) {
     failureRedirect: '/admin/auth/login',
     failureFlash: true,
   }))
+
+  app.get('/admin/auth/register', function(req, res) {
+    res.render('admin/register', {
+      page: 'register',
+      message: req.flash('message'),
+    });
+  });
 };

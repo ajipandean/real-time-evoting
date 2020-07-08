@@ -8,24 +8,36 @@ block content
           div(class="alert alert-danger") #{message}
         div(class="card border-0 shadow")
           div(class="card-header border-0 bg-white")
-            h5(class="card-title mb-0") Login as Admin
+            h5(class="card-title mb-0") Register Admin
           div(class="card-body")
-            form(action="/admin/auth/login", method="POST")
+            form
+              div(class="form-group")
+                label(for="email") Email
+                input(
+                  autofocus
+                  id="email"
+                  name="email"
+                  type="email"
+                  class="form-control"
+                )
               div(class="form-group")
                 label(for="username") Username
                 input(
                   autofocus
-                  type="text"
+                  id="username"
                   name="username"
+                  type="text"
                   class="form-control"
                 )
               div(class="form-group")
                 label(for="password") Password
                 input(
+                  autofocus
+                  id="password"
                   name="password"
                   type="password"
                   class="form-control"
                 )
               div(class="form-group mb-0")
-                button(class="btn btn-primary mr-2", type="submit") Login
-                a(class="btn btn-default", href="/admin/auth/register") Register
+                button(class="btn btn-primary mr-2", type="submit") Register
+                a(class="btn btn-default", href="/admin/auth/login") Login instead
