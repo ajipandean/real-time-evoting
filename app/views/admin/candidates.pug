@@ -32,12 +32,29 @@ block content
                         td(class="align-middle") #{candidate.vision}
                         td(class="align-middle") #{candidate.vote} points
                         td(class="text-right")
-                          a(class="btn btn-danger btn-sm mx-1", href="/admin/candidates") Hapus
+                          button(
+                            class="btn btn-danger btn-sm"
+                            type="button"
+                            data-toggle="modal"
+                            data-target=`#delete-candidate-modal-${candidate._id}`
+                          ) Delete
           else
             div(class="card-body")
               div You have no candidates for this voting.
 
 block modals
+  each candidate in candidates
+    div(class="modal fade", id=`delete-candidate-modal-${candidate._id}`, tabindex="-1", role="dialog")
+      div(class="modal-dialog shadow")
+        div(class="modal-content")
+          div(class="modal-header border-0")
+            h5(class="modal-title mb-0") Delete candidate
+          div(class="modal-body")
+            div Are you sure want to delete #{candidate.president} & #{candidate.vicePresident} from candidate?
+          div(class="modal-footer border-0")
+            button(class="btn btn-default", type="button", data-dismiss="modal") Cancel
+            button(class="btn btn-danger", type="submit") Yes, sure
+
   div(class="modal fade", id="add-new-candidate-modal", tabindex="-1", role="dialog")
     form(action="/admin/candidates", method="POST")
       div(class="modal-dialog shadow")
