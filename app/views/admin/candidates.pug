@@ -22,12 +22,12 @@ block content
                     th(scope="col") Vision
                     th(class="text-right")
                 tbody
-                  each val in [1, 2, 3, 4, 5]
+                  each candidate, index in candidates
                     tr(class="border-bottom")
-                      th(class="text-center align-middle", scope="row") #{val}
-                      td(class="align-middle") Mahada Putra
-                      td(class="align-middle") Adelia Pratiwi
-                      td(class="align-middle") Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam, quos.
+                      th(class="text-center align-middle", scope="row") #{index + 1}
+                      td(class="align-middle") #{candidate.president}
+                      td(class="align-middle") #{candidate.vicePresident}
+                      td(class="align-middle") #{candidate.vision}
                       td(class="text-right")
                         a(class="btn btn-danger btn-sm mx-1", href="/admin/candidates") Hapus
 

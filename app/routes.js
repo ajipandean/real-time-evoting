@@ -16,12 +16,7 @@ module.exports = function(app, passport) {
       page: 'dashboard',
     });
   });
-  app.get('/admin/candidates', isLoggedin, function(req, res) {
-    res.render('admin/candidates', {
-      page: 'candidates',
-      message: req.flash('message'),
-    });
-  });
+  app.get('/admin/candidates', isLoggedin, CandidateController.fetch);
   app.post('/admin/candidates', isLoggedin, CandidateController.create);
 
   app.get('/admin/auth/login', function(req, res) {

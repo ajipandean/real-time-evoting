@@ -1,6 +1,14 @@
 const Candidate = require('../models/candidate');
 
 module.exports = {
+  async fetch(req, res) {
+    const candidates = await Candidate.find();
+    res.render('admin/candidates', {
+      candidates,
+      page: 'candidates',
+      message: req.flash('message'),
+    });
+  },
   async create(req, res) {
     const { president, vicePresident, vision } = req.body;
     const candidate = new Candidate({
@@ -15,6 +23,7 @@ module.exports = {
           type: 'failure',
           text: 'Failed to add new candidate.',
         });
+        res.redirect('/admin/candidates');
       } else {
         req.flash('message', {
           type: 'success',
