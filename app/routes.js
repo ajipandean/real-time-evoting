@@ -15,6 +15,7 @@ module.exports = function(app, passport) {
   app.get('/admin/dashboard', isLoggedin, DashboardController.fetch);
   app.get('/admin/candidates', isLoggedin, CandidateController.fetch);
   app.post('/admin/candidates', isLoggedin, CandidateController.create);
+  app.post('/admin/candidates/:id', isLoggedin, CandidateController.destroy);
 
   app.get('/admin/auth/login', function(req, res) {
     res.render('admin/login', {

@@ -32,5 +32,23 @@ module.exports = {
         res.redirect('/admin/candidates');
       }
     });
+  }, 
+  async destroy(req, res) {
+    const candidate = await Candidate.findByIdAndDelete(req.params.id, function(err) {
+      if (err) {
+        console.log(err);
+        req.flash('message', {
+          type: 'failure',
+          text: 'Failed to delete candidate.',
+        });
+        res.redirect('/admin/candidates');
+      } else {
+        req.flash('message', {
+          type: 'success',
+          text: 'Candidate has been succcessfully deleted.',
+        });
+        res.redirect('/admin/candidates');
+      }
+    });
   },
 };

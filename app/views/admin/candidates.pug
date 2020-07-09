@@ -45,15 +45,16 @@ block content
 block modals
   each candidate in candidates
     div(class="modal fade", id=`delete-candidate-modal-${candidate._id}`, tabindex="-1", role="dialog")
-      div(class="modal-dialog shadow")
-        div(class="modal-content")
-          div(class="modal-header border-0")
-            h5(class="modal-title mb-0") Delete candidate
-          div(class="modal-body")
-            div Are you sure want to delete #{candidate.president} & #{candidate.vicePresident} from candidate?
-          div(class="modal-footer border-0")
-            button(class="btn btn-default", type="button", data-dismiss="modal") Cancel
-            button(class="btn btn-danger", type="submit") Yes, sure
+      form(action=`/admin/candidates/${candidate._id}`, method="POST")
+        div(class="modal-dialog shadow")
+          div(class="modal-content")
+            div(class="modal-header border-0")
+              h5(class="modal-title mb-0") Delete candidate
+            div(class="modal-body")
+              div Are you sure want to delete #{candidate.president} & #{candidate.vicePresident} from candidate?
+            div(class="modal-footer border-0")
+              button(class="btn btn-default", type="button", data-dismiss="modal") Cancel
+              button(class="btn btn-danger", type="submit") Yes, sure
 
   div(class="modal fade", id="add-new-candidate-modal", tabindex="-1", role="dialog")
     form(action="/admin/candidates", method="POST")
