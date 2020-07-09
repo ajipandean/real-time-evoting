@@ -4,6 +4,8 @@ block content
   div(class="container py-4")
     div(class="row")
       div(class="col")
+        if message.length > 0
+          div(class=`alert alert-${message[0].type === 'success' ? 'success' : 'danger'}`) #{message[0].text}
         div(class="card border-0 shadow")
           div(class="card-header border-0 bg-white")
             h5(class="card-title mb-0") List of Candidates
@@ -18,7 +20,7 @@ block content
                     th(scope="col") President
                     th(scope="col") Vice president
                     th(scope="col") Vision
-                    th(class="text-right", scope="col") Actions
+                    th(class="text-right")
                 tbody
                   each val in [1, 2, 3, 4, 5]
                     tr(class="border-bottom")
@@ -27,12 +29,11 @@ block content
                       td(class="align-middle") Adelia Pratiwi
                       td(class="align-middle") Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam, quos.
                       td(class="text-right")
-                        a(class="btn btn-secondary btn-sm mx-1", href="/admin/candidates") Detail
                         a(class="btn btn-danger btn-sm mx-1", href="/admin/candidates") Hapus
 
 block modals
   div(class="modal fade", id="add-new-candidate-modal", tabindex="-1", role="dialog")
-    form
+    form(action="/admin/candidates", method="POST")
       div(class="modal-dialog shadow")
         div(class="modal-content")
           div(class="modal-header border-0")
@@ -51,7 +52,7 @@ block modals
               input(
                 required
                 id="vice-president"
-                name="vice_president"
+                name="vicePresident"
                 class="form-control"
               )
             div(class="form-group mb-0")

@@ -1,3 +1,6 @@
+// Controllers invocation
+const CandidateController = require('./controllers/candidate');
+
 // Helpers invocation
 const isLoggedin = require('./helpers/is-loggedin');
 
@@ -16,8 +19,10 @@ module.exports = function(app, passport) {
   app.get('/admin/candidates', isLoggedin, function(req, res) {
     res.render('admin/candidates', {
       page: 'candidates',
+      message: req.flash('message'),
     });
   });
+  app.post('/admin/candidates', isLoggedin, CandidateController.create);
 
   app.get('/admin/auth/login', function(req, res) {
     res.render('admin/login', {
