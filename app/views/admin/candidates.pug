@@ -9,27 +9,33 @@ block content
         div(class="card border-0 shadow")
           div(class="card-header border-0 bg-white")
             h5(class="card-title mb-0") List of Candidates
-            p(class="card-text text-muted") Total 3 candidates
+            p(class="card-text text-muted") Total #{candidates.length} candidates
             button(class="btn btn-primary btn-block", type="button", data-toggle="modal", data-target="#add-new-candidate-modal") Add new candidate
-          div(class="card-body p-0")
-            div(class="table-responsive")
-              table(class="table table-hover table-borderless")
-                thead
-                  tr(class="border-bottom")
-                    th(class="text-center", scope="col") #
-                    th(scope="col") President
-                    th(scope="col") Vice president
-                    th(scope="col") Vision
-                    th(class="text-right")
-                tbody
-                  each candidate, index in candidates
+          if candidates.length !== 0
+            div(class="card-body p-0")
+              div(class="table-responsive")
+                table(class="table table-hover table-borderless")
+                  thead
                     tr(class="border-bottom")
-                      th(class="text-center align-middle", scope="row") #{index + 1}
-                      td(class="align-middle") #{candidate.president}
-                      td(class="align-middle") #{candidate.vicePresident}
-                      td(class="align-middle") #{candidate.vision}
-                      td(class="text-right")
-                        a(class="btn btn-danger btn-sm mx-1", href="/admin/candidates") Hapus
+                      th(class="text-center", scope="col") #
+                      th(scope="col") President
+                      th(scope="col") Vice president
+                      th(scope="col") Vision
+                      th(scope="col") Vote
+                      th(class="text-right")
+                  tbody
+                    each candidate, index in candidates
+                      tr(class="border-bottom")
+                        th(class="text-center align-middle", scope="row") #{index + 1}
+                        td(class="align-middle") #{candidate.president}
+                        td(class="align-middle") #{candidate.vicePresident}
+                        td(class="align-middle") #{candidate.vision}
+                        td(class="align-middle") #{candidate.vote} points
+                        td(class="text-right")
+                          a(class="btn btn-danger btn-sm mx-1", href="/admin/candidates") Hapus
+          else
+            div(class="card-body")
+              div You have no candidates for this voting.
 
 block modals
   div(class="modal fade", id="add-new-candidate-modal", tabindex="-1", role="dialog")
