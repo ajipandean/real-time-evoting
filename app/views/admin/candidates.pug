@@ -17,6 +17,7 @@ block content
                     th(class="text-center", scope="col") #
                     th(scope="col") President
                     th(scope="col") Vice president
+                    th(scope="col") Vision
                     th(class="text-right", scope="col") Actions
                 tbody
                   each val in [1, 2, 3, 4, 5]
@@ -24,6 +25,7 @@ block content
                       th(class="text-center align-middle", scope="row") #{val}
                       td(class="align-middle") Mahada Putra
                       td(class="align-middle") Adelia Pratiwi
+                      td(class="align-middle") Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam, quos.
                       td(class="text-right")
                         a(class="btn btn-secondary btn-sm mx-1", href="/admin/candidates") Detail
                         a(class="btn btn-danger btn-sm mx-1", href="/admin/candidates") Hapus
@@ -44,12 +46,21 @@ block modals
                 name="president"
                 class="form-control"
               )
-            div(class="form-group mb-0")
+            div(class="form-group")
               label(for="vice-president") Vice president name
               input(
                 required
                 id="vice-president"
                 name="vice_president"
+                class="form-control"
+              )
+            div(class="form-group mb-0")
+              label(for="vision") Vision
+              textarea(
+                required
+                rows="5"
+                id="vision"
+                name="vision"
                 class="form-control"
               )
           div(class="modal-footer border-0")
