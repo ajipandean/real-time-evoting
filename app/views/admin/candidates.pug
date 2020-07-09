@@ -8,23 +8,50 @@ block content
           div(class="card-header border-0 bg-white")
             h5(class="card-title mb-0") List of Candidates
             p(class="card-text text-muted") Total 3 candidates
-            button(class="btn btn-primary btn-block", type="buttom") Add new candidate
+            button(class="btn btn-primary btn-block", type="button", data-toggle="modal", data-target="#add-new-candidate-modal") Add new candidate
           div(class="card-body p-0")
             div(class="table-responsive")
               table(class="table table-hover table-borderless")
                 thead
                   tr(class="border-bottom")
-                    th(scope="col") #
+                    th(class="text-center", scope="col") #
                     th(scope="col") President
                     th(scope="col") Vice president
                     th(class="text-right", scope="col") Actions
                 tbody
                   each val in [1, 2, 3, 4, 5]
                     tr(class="border-bottom")
-                      th(class="align-middle", scope="row") #{val}
+                      th(class="text-center align-middle", scope="row") #{val}
                       td(class="align-middle") Mahada Putra
                       td(class="align-middle") Adelia Pratiwi
                       td(class="text-right")
                         a(class="btn btn-secondary btn-sm mx-1", href="/admin/candidates") Detail
                         a(class="btn btn-danger btn-sm mx-1", href="/admin/candidates") Hapus
 
+block modals
+  div(class="modal fade", id="add-new-candidate-modal", tabindex="-1", role="dialog")
+    form
+      div(class="modal-dialog shadow")
+        div(class="modal-content")
+          div(class="modal-header border-0")
+            h5(class="modal-title") Add new candidate
+          div(class="modal-body")
+            div(class="form-group")
+              label(for="president") President name
+              input(
+                required
+                id="president"
+                name="president"
+                class="form-control"
+              )
+            div(class="form-group mb-0")
+              label(for="vice-president") Vice president name
+              input(
+                required
+                id="vice-president"
+                name="vice_president"
+                class="form-control"
+              )
+          div(class="modal-footer border-0")
+            button(class="btn btn-default", type="button", data-dismiss="modal") Cancel
+            button(class="btn btn-primary", type="submit") Save candidate
