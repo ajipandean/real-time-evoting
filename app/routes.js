@@ -1,4 +1,5 @@
 // Controllers invocation
+const DashboardController = require('./controllers/dashboard');
 const CandidateController = require('./controllers/candidate');
 
 // Helpers invocation
@@ -11,11 +12,7 @@ module.exports = function(app, passport) {
   });
 
   // Admin routes
-  app.get('/admin/dashboard', isLoggedin, function(req, res) {
-    res.render('admin/dashboard', {
-      page: 'dashboard',
-    });
-  });
+  app.get('/admin/dashboard', isLoggedin, DashboardController.fetch);
   app.get('/admin/candidates', isLoggedin, CandidateController.fetch);
   app.post('/admin/candidates', isLoggedin, CandidateController.create);
 

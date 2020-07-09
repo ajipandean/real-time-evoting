@@ -1,9 +1,19 @@
+// Extract candidates data from server
+const candidates = JSON.parse($('#vote-bar-chart').attr('data-candidates'));
+const candidateNames = candidates.map(function(c) {
+  return c.president.split(' ')[0] + ' & ' + c.vicePresident.split(' ')[0];
+});
+const candidateVotes = candidates.map(function(c) {
+  return c.vote;
+});
+
+// Construct data to display to chart
 const data = {
-  labels: ['Mahada', 'Arix', 'Adelia', 'Devi', 'Anik'],
+  labels: candidateNames,
   datasets: [
     {
       label: 'Candidate vote counts',
-      data: [44, 55, 23, 1, 43],
+      data: candidateVotes,
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -25,6 +35,7 @@ const data = {
   ],
 };
 
+// Instantiate the chart
 const voteBarChart = new Chart($('#vote-bar-chart'), {
   type: 'bar',
   data: data,

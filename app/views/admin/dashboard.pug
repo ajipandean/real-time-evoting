@@ -10,9 +10,9 @@ block content
         div(class="card border-0 shadow")
           div(class="card-header border-0 bg-white")
             h5(class="card-title mb-0") Candidates vote count
-            p(class="card-text text-muted mb-0") 3 candidates
+            p(class="card-text text-muted mb-0") #{candidatesCount} candidates
           div(class="card-body")
-            canvas(id="vote-bar-chart")
+            canvas(id="vote-bar-chart", data-candidates=`${candidates}`)
 
 block script-addons
   script(src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0")
