@@ -8,7 +8,9 @@ const isLoggedin = require('./helpers/is-loggedin');
 module.exports = function(app, passport) {
   // Client routes
   app.get('/', function(req, res) {
-    res.redirect('/admin/auth/login');
+    res.render('client/index', {
+      page: 'index',
+    });
   });
 
   // Admin routes
