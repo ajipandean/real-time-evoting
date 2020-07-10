@@ -34,7 +34,7 @@ module.exports = {
     });
   }, 
   async destroy(req, res) {
-    const candidate = await Candidate.findByIdAndDelete(req.params.id, function(err) {
+    await Candidate.findByIdAndDelete(req.params.id, function(err) {
       if (err) {
         console.log(err);
         req.flash('message', {
@@ -48,6 +48,25 @@ module.exports = {
           text: 'Candidate has been succcessfully deleted.',
         });
         res.redirect('/admin/candidates');
+      }
+    });
+  },
+  async vote(req, res) {
+    await Candidate.findById(req.params.id, function(err, candidate) {
+      if (err) {
+        req.flash('message', {
+          type: 'failure',
+          text: 'Failed to vote candidate.',
+        });
+      } else {
+        candidate.vote = candidate.vote + 1;
+        candidate.save(function() {
+          req.flash('message', {
+            type: 'success',
+            text: 'Candidate has been successfully voted.',
+          });
+          res.redirect('/');
+        });
       }
     });
   },

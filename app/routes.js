@@ -13,6 +13,8 @@ module.exports = function(app, passport) {
     });
   });
 
+  app.post('/candidates/:id/vote', CandidateController.vote);
+
   // Admin routes
   app.get('/admin/dashboard', isLoggedin, DashboardController.fetch);
   app.get('/admin/candidates', isLoggedin, CandidateController.fetch);

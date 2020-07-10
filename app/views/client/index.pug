@@ -20,4 +20,5 @@ block content
                   div(class="font-weight-bold") Vision
                   div(class="text-muted") Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, quis. Aliquam illum, dolorum sunt reiciendis quo veritatis eius cum libero.
             div(class="card-footer border-0 bg-white")
-              a(class="btn btn-primary btn-block", href="/") Vote candidate
+              form(action=`/candidates/${val}/vote`, method="POST")
+                button(class="btn btn-primary btn-block", type="submit") Vote candidate
