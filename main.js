@@ -38,12 +38,6 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Socket middleware
-app.use(function(req, res, next) {
-  req.io = io;
-  next();
-});
-
 // Static assets registration
 app.use('/assets', express.static(path.join(__dirname, 'app', 'assets')));
 
@@ -62,30 +56,5 @@ const server = app.listen(PORT, function() {
   console.log(`Server running on port ${PORT}`);
 });
 
-// Socket requirements
-const io = socketio(server);
-
-io.on('connection', function(socket) {
-  console.log('Socket connected...');
-  socket.on('vote', function(id) {
-    Candidate.findById(id, function(err, candidate) {
-      if (err) {
-        console.log(err);
-      } else {
-        candidate.vote = candidate.vote + 1;
-        candidate.save(async function() {
-          console.log('Candidate voted.');
-          const candidates = await Candidate.find({}, {
-            _id: 0,
-            __v: 0,
-            vision: 0,
-          });
-          io.emit('vote', candidates);
-        });
-      }
-    });
-  });
-  socket.on('disconnect', function() {
-    console.log('Socket disconnected...');
-  });
-});
+// Socket configuration
+require('./app/config/socket')(server);
