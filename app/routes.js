@@ -7,12 +7,7 @@ const isLoggedin = require('./helpers/is-loggedin');
 
 module.exports = function(app, passport) {
   // Client routes
-  app.get('/', function(req, res) {
-    res.render('client/index', {
-      page: 'index',
-    });
-  });
-
+  app.get('/', CandidateController.home);
   app.post('/candidates/:id/vote', CandidateController.vote);
 
   // Admin routes

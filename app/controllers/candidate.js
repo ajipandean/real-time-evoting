@@ -51,6 +51,16 @@ module.exports = {
       }
     });
   },
+
+  // Client
+  async home(req, res) {
+    const candidates = await Candidate.find();
+    res.render('client/index', {
+      candidates,
+      page: 'index',
+      message: req.flash('message'),
+    });
+  },
   async vote(req, res) {
     await Candidate.findById(req.params.id, function(err, candidate) {
       if (err) {

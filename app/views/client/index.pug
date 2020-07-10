@@ -2,23 +2,25 @@ extends ../layouts/client.pug
 
 block content
   div(class="container py-4")
+    if message.length > 0
+      div(class=`alert alert-${message[0].type === 'success' ? 'success' : 'danger'}`) #{message[0].text}
     div(class="row")
-      each val in [1,2,3,4,4,5]
+      each candidate, index in candidates
         div(class="col-12 col-sm-6 mb-4")
           div(class="card border-0 shadow")
             div(class="card-header border-0 bg-white")
-              h5(class="card-title mb-0") Candidate #1
+              h5(class="card-title mb-0") Candidate ##{index + 1}
             div(class="card-body p-0")
               ul(class="list-group list-group-flush")
                 li(class="list-group-item")
                   div(class="font-weight-bold") President
-                  div(class="text-muted") I Kadek Mahada Putra
+                  div(class="text-muted") #{candidate.president}
                 li(class="list-group-item")
                   div(class="font-weight-bold") Vice President
-                  div(class="text-muted") I Kadek Mahada Putra
+                  div(class="text-muted") #{candidate.vicePresident}
                 li(class="list-group-item")
                   div(class="font-weight-bold") Vision
-                  div(class="text-muted") Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, quis. Aliquam illum, dolorum sunt reiciendis quo veritatis eius cum libero.
+                  div(class="text-muted") #{candidate.vision}
             div(class="card-footer border-0 bg-white")
-              form(action=`/candidates/${val}/vote`, method="POST")
+              form(action=`/candidates/${candidate._id}/vote`, method="POST")
                 button(class="btn btn-primary btn-block", type="submit") Vote candidate
