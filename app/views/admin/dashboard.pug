@@ -15,5 +15,6 @@ block content
             canvas(id="vote-bar-chart", data-candidates=`${candidates}`)
 
 block script-addons
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js")
   script(src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0")
   script(src="/assets/js/dashboard.js")

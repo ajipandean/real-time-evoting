@@ -8,6 +8,10 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
+const socketio = require('socket.io');
+
+// Models
+const Candidate = require('./app/models/candidate');
 
 // Env variable configuration
 require('dotenv').config()
@@ -33,6 +37,14 @@ if (process.env.NODE_ENV === 'production') {
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Socket middleware
+app.use(function(req, res, next) {
+  req.io = io;
+  next();
+});
+
+// Static assets registration
 app.use('/assets', express.static(path.join(__dirname, 'app', 'assets')));
 
 // Passport requirements
@@ -46,6 +58,34 @@ require('./app/routes')(app, passport);
 
 // Serve app
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, function() {
+const server = app.listen(PORT, function() {
   console.log(`Server running on port ${PORT}`);
+});
+
+// Socket requirements
+const io = socketio(server);
+
+io.on('connection', function(socket) {
+  console.log('Socket connected...');
+  socket.on('vote', function(id) {
+    Candidate.findById(id, function(err, candidate) {
+      if (err) {
+        console.log(err);
+      } else {
+        candidate.vote = candidate.vote + 1;
+        candidate.save(async function() {
+          console.log('Candidate voted.');
+          const candidates = await Candidate.find({}, {
+            _id: 0,
+            __v: 0,
+            vision: 0,
+          });
+          io.emit('vote', candidates);
+        });
+      }
+    });
+  });
+  socket.on('disconnect', function() {
+    console.log('Socket disconnected...');
+  });
 });

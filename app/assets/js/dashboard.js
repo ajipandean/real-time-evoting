@@ -1,9 +1,9 @@
 // Extract candidates data from server
-const candidates = JSON.parse($('#vote-bar-chart').attr('data-candidates'));
-const candidateNames = candidates.map(function(c) {
+let candidates = JSON.parse($('#vote-bar-chart').attr('data-candidates'));
+let candidateNames = candidates.map(function(c) {
   return c.president.split(' ')[0] + ' & ' + c.vicePresident.split(' ')[0];
 });
-const candidateVotes = candidates.map(function(c) {
+let candidateVotes = candidates.map(function(c) {
   return c.vote;
 });
 
@@ -57,4 +57,13 @@ const voteBarChart = new Chart($('#vote-bar-chart'), {
       ],
     },
   },
+});
+
+const socket = io();
+
+socket.on('vote', function(n) {
+  data.datasets[0].data = n.map(function(c) {
+    return c.vote;
+  });
+  voteBarChart.update();
 });

@@ -22,5 +22,12 @@ block content
                   div(class="font-weight-bold") Vision
                   div(class="text-muted") #{candidate.vision}
             div(class="card-footer border-0 bg-white")
-              form(action=`/candidates/${candidate._id}/vote`, method="POST")
-                button(class="btn btn-primary btn-block", type="submit") Vote candidate
+              button(
+                class="btn btn-primary btn-block"
+                type="button"
+                data-id=`${candidate._id}`
+                onclick=`emitVote('${candidate._id}')`
+              ) Vote candidate
+block script-addons
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js")
+  script(src="/assets/js/vote.js")
